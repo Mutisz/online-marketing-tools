@@ -13,3 +13,7 @@ composer.lock
 
 # Logs
 /var
+
+# Configuration
+logging.php
+config.php

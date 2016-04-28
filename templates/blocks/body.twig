@@ -1,0 +1,28 @@
+{#
+	Contains elements commonly used in body HTML part.
+
+	Created on: Jul 15, 2015, 12:40:38 AM
+	Author: Mateusz Tokarski
+#}
+
+{# Generates a URL string to invoke selected controller action #}
+{% macro actionLink(controller, action) %}
+	{{ "index.php?controller=" ~ controller|default("Main") ~ "&action=" ~ action|default("showDefault") }}
+{% endmacro %}
+
+{# Describes navigation link #}
+{% macro navigationLink(content, controller, action) %}
+	{% import _self as body %}
+	<div class="top_navigation_link">
+		<a href="{{ body.actionLink(controller|default("Main"), action|default("showDefault")) }}">
+			{{ content }}
+		</a>
+	</div>
+{% endmacro %}
+
+{# Describes all aplication navigation links #}
+{% macro allNavigationLinks() %}
+	{% import _self as body %}
+	{{ body.navigationLink("Main", "Main") }}
+	{{ body.navigationLink("Compare Hotels", "Hotels") }}
+{% endmacro %}

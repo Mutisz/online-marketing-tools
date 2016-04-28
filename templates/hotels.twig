@@ -1,0 +1,91 @@
+{#
+	A template for hotels comparison form.
+
+    Created on: Apr 9, 2016
+    Author: Mateusz Tokarski
+#}
+
+{% extends "base/base.twig" %}
+
+{% set title = 'Compare Hotels' %}
+{% set description = 'Generates Excel file with hotels comparison across multiple tour operators.' %}
+{% block head %}
+	{{ parent() }}
+	{{ head_macros.link("css/forms.css") }}
+{% endblock %}
+{% block content %}
+	{{ parent() }}
+	<form id="compare_hotels" method="post" action="{{ body_macros.actionLink("Hotels", "showCompare") }}">
+		<div class="wide_button">
+			<input type="submit" value="Submit">
+		</div>
+		<fieldset>
+			<legend>Offer</legend>
+			<div class="simple_fields">
+				<div class="field">
+					<label for="start_date">Start date (after {{ min_date }})</label>
+					<input id="from_date" type="date" name="from_date" min="{{ min_date }}" max="{{ max_date }}" />
+				</div>
+				<div class="field">
+					<label for="to_date">End date (before {{ max_date }})</label>
+					<input id="to_date" type="date" name="to_date" min="{{ min_date }}" max="{{ max_date }}" />
+				</div>
+				<div class="field">
+					<label for="departure_name">Departure city</label>
+					<select name="departure_name">
+						{% for departure_name in departure_names %}
+							<option value="{{ departure_name }}">{{ departure_name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="field">
+					<label for="duration">Duration</label>
+					<input id="duration" type="text" name="duration" />
+					<p class="field_info">
+						You can use a duration range by separating period start and end with <b>:</b> or <b>-</b> characters.
+						If no duration is provided a default of <b>7 nights</b> will be used.
+					</p>
+				</div>
+				<div class="field">
+					<label for="max_adults">Max adults</label>
+					<input id="max_adults" type="text" name="max_adults" />
+					<p class="field_info">
+						If maximum number of adults is not provided, a default of <b>2 adults</b> will be used.
+					</p>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Meal types</legend>
+			<p class="fieldset_info">
+				If no meal types are selected all will be included in resulting offers.
+			</p>
+			{% for id, meal_type in meal_types %}
+				<div class="checkbox_field">
+					<input class="checkbox_input" type="checkbox" name="meal_type[]" value="{{ id }}" checked="checked" />
+					<span class="checkbox_label">{{ meal_type }}</span>
+				</div>
+				{% if loop.index % 6 == 0 %}
+					</br>
+				{% endif %}
+			{% endfor %}
+		</fieldset>
+		{% for id, hotels in regions %}
+		<fieldset>
+			<legend>Hotels ({{ id }})</legend>
+			{% for id, hotel in hotels %}
+				<div class="checkbox_field">
+					<input class="checkbox_input" type="checkbox" name="to_compare[]" value="{{ id }}" />
+					<span class="checkbox_label">{{ hotel }}</span>
+				</div>
+				{% if loop.index % 6 == 0 %}
+					</br>
+				{% endif %}
+			{% endfor %}
+		</fieldset>
+		{% endfor %}
+		<div class="wide_button">
+			<input type="submit" value="Submit">
+		</div>
+	</form>
+{% endblock %}

@@ -1,0 +1,73 @@
+
+/*
+
+    Created on: Apr 9, 2016
+    Author: Mateusz Tokarski
+*/
+
+.simple_fields {
+	float: left;
+	width: 75%;
+}
+
+.wide_button {
+	clear: both;
+	float: left;
+	width: 25%;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+.wide_button input {
+	width: 100%;
+}
+
+.field {
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+	padding-bottom: 0.4em;
+}
+
+.field .label {
+	float: left;
+	width: 30%;
+}
+
+.field input, .field select {
+	float: right;
+	width: 60%;
+}
+
+fieldset {
+	clear: both;
+}
+
+fieldset .checkbox_field {
+	display: inline;
+	width: 12em;
+}
+
+fieldset .checkbox_label {
+	display: inline-block;
+	width: 10em;
+	margin-right: 0.6em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+p.field_info, p.fieldset_info {
+	line-height: 13px;
+	font-size: 12px;
+	font-style: italic;
+}
+
+p.field_info {
+	padding-left: 40%;
+}
+
+p.fieldset_info {
+	margin-bottom: 0.6em;
+	text-align: center;
+}

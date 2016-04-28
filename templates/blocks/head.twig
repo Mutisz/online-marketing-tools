@@ -1,0 +1,43 @@
+{#
+	Contains elements commonly found inside head HTML tag.
+
+	Created on: Jul 15, 2015, 12:40:38 AM
+	Author: Mateusz Tokarski
+#}
+
+{# Link to external script #}
+{% macro scriptLink(source, type, async, defer) %}
+	<script src="{{ source }}"
+		type="{{ type|default("text/javascript") }}"
+		{% if async|default(false) %}async{% endif %}
+		{% if defer|default(false) %}defer{% endif %} />
+{% endmacro %}
+
+{# Locally definced script #}
+{% macro script(content, type, async, defer) %}
+	<script type="{{ type|default("text/javascript") }}"
+		{% if async|default(false) %}async{% endif %}
+		{% if defer|default(false) %}defer{% endif %} >
+		{{ content }}
+	</script>
+{% endmacro %}
+
+{# Locally defined style information #}
+{% macro style(content, type) %}
+	<style type="{{ type|default("text/css") }}" >
+		{{ content }}
+	</style>
+{% endmacro %}
+
+{# Link to external source #}
+{% macro link(location, rel, type) %}
+	<link href="templates/{{ location }}"
+		rel="{{ rel|default("stylesheet") }}"
+		type="{{ type|default("text/css") }}" />
+{% endmacro %}
+
+{# Link to jQuery library #}
+{% macro jQuery() %}
+	{% import _self as head %}
+	{{ head.scriptLink("http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js") }}
+{% endmacro %}

@@ -1,0 +1,14 @@
+{
+	"require": {
+		"doctrine/cache": "^1",
+		"doctrine/annotations": "^1",
+		"php-di/php-di": "^5",
+		"monolog/monolog": "^1",
+		"theorchard/monolog-cascade": "^0",
+		"twig/twig": "^1",
+		"sabre/xml": "^1",
+		"guzzlehttp/guzzle": "^6",
+		"phpoffice/phpexcel": "^1",
+		"swiftmailer/swiftmailer": "^5"
+	}
+}

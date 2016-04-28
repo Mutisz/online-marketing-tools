@@ -1,0 +1,53 @@
+{#
+
+    Created on: Apr 9, 2016
+    Author: Mateusz Tokarski
+#}
+
+{% import "blocks/head.twig" as head_macros %}
+{% import "blocks/body.twig" as body_macros %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <title>Online Marketing Tools - {{ title }}</title>
+			{{ head_macros.link("css/base.css") }}
+        {% endblock %}
+    </head>
+    <body>
+		<div id="header">
+			<div class="inner_header">
+				<img src="templates/media/images/page/banner.png" />
+				<p>Online Marketing Tools</p>
+			</div>
+		</div>
+		<div id="navigation">
+			{% block links %}
+				{{ body_macros.allNavigationLinks() }}
+			{% endblock %}
+		</div>
+		<div id="content">
+			<div class="inner_content">
+				<div class="content_title">
+					{{ title }}
+				</div>
+				<div class="content_text">
+					<p class="content_description">{{ description }}</p>
+					{% block content %}
+						{% if errors %}
+							<div class="errors">
+								<p>Application erros occured!</p>
+								<ul>
+								{% for error in errors %}
+									<li>error</li>
+								{% endfor %}
+								</ul>
+							</div>
+						{% endif %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

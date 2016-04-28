@@ -1,0 +1,15 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Modules and components
+npm-debug.log
+/bower_components
+/node_modules
+/vendor
+
+# Composer
+composer.lock
+
+# Logs
+/var
